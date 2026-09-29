@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Connect | Alumni Interaction Portal{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1>Connect with {{ person.name }}</h1>
+  <p class="text-muted">{{ person.role }} at {{ person.company }}</p>
+
+  {% if submitted %}
+  <div class="alert alert-success">Your connection request has been submitted successfully for this demo.</div>
+  {% endif %}
+
+  <div class="card shadow-sm mt-4">
+    <div class="card-body p-4">
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label">Your Name</label>
+          <input class="form-control" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Your Email</label>
+          <input type="email" class="form-control" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Message</label>
+          <textarea class="form-control" name="message" rows="5" required placeholder="I would like to connect regarding..."></textarea>
+        </div>
+        <button class="btn btn-dark">Send Connection Request</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

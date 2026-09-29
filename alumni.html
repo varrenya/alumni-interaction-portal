@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Alumni Directory{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+      <h1>Alumni Directory</h1>
+      <p class="text-muted mb-0">Search alumni by name, company, role, location or skill.</p>
+    </div>
+  </div>
+
+  <form method="get" action="{{ url_for('alumni_directory') }}" class="row g-2 mb-4">
+    <div class="col-md-10">
+      <input class="form-control form-control-lg" name="q" value="{{ query }}" placeholder="e.g. Python, Infosys, Hyderabad, DevOps">
+    </div>
+    <div class="col-md-2 d-grid">
+      <button class="btn btn-dark btn-lg">Search</button>
+    </div>
+  </form>
+
+  {% if query %}
+    <p><strong>{{ alumni|length }}</strong> result(s) for "<strong>{{ query }}</strong>"</p>
+  {% endif %}
+
+  <div class="row g-4">
+    {% for person in alumni %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h4>{{ person.name }}</h4>
+          <p class="mb-1"><strong>{{ person.role }}</strong></p>
+          <p class="text-muted">{{ person.company }} • {{ person.location }}</p>
+          <span class="badge text-bg-light mb-3">{{ person.graduation }}</span>
+          <p>{{ person.bio }}</p>
+          <a href="{{ url_for('alumni_details', alumni_id=person.id) }}" class="btn btn-outline-dark">View Details</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="col-12"><div class="alert alert-warning">No alumni found. Try another name, company, role, location or skill.</div></div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

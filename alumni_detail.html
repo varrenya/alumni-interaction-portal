@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ person.name }} | Alumni Details{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <a href="{{ url_for('alumni_directory') }}" class="text-decoration-none">← Back to Directory</a>
+  <div class="card shadow-sm mt-3">
+    <div class="card-body p-4">
+      <h1>{{ person.name }}</h1>
+      <p class="lead">{{ person.role }} at {{ person.company }}</p>
+      <hr>
+      <div class="row g-3">
+        <div class="col-md-6"><strong>Graduation:</strong><br>{{ person.graduation }}</div>
+        <div class="col-md-6"><strong>Location:</strong><br>{{ person.location }}</div>
+        <div class="col-md-6"><strong>Email:</strong><br>{{ person.email }}</div>
+        <div class="col-md-6"><strong>Experience:</strong><br>{{ person.experience }}</div>
+        <div class="col-12"><strong>Skills:</strong><br>{{ person.skills }}</div>
+        <div class="col-12"><strong>About:</strong><br>{{ person.bio }}</div>
+        <div class="col-12"><strong>Achievements:</strong><br>{{ person.achievements }}</div>
+      </div>
+      <a href="{{ url_for('connect', alumni_id=person.id) }}" class="btn btn-dark mt-4">Connect with {{ person.name.split()[0] }}</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

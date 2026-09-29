@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Alumni Directory{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1>Alumni Directory</h1>
+        <p class="text-muted">
+            Explore alumni profiles and connect with professionals
+            from different fields.
+        </p>
+    </div>
+
+    <!-- Search -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8">
+
+            <form method="GET" action="{{ url_for('alumni_directory') }}">
+
+                <div class="input-group">
+
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control"
+                        placeholder="Search by name, company, role or location..."
+                        value="{{ search or '' }}">
+
+                    <button class="btn btn-dark" type="submit">
+                        Search
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- Alumni Results -->
+    <div class="row g-4">
+
+        {% if alumni %}
+
+            {% for person in alumni %}
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card alumni-card h-100">
+
+                    <div class="card-body">
+
+                        <h3>{{ person.name }}</h3>
+
+                        <p class="text-muted mb-2">
+                            {{ person.role }}
+                        </p>
+
+                        <p>
+                            <strong>Company:</strong>
+                            {{ person.company }}
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            {{ person.location }}
+                        </p>
+
+                        <a
+                            href="{{ url_for('alumni_details', alumni_id=person.id) }}"
+                            class="btn btn-outline-dark">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="col-12">
+
+                <div class="alert alert-secondary text-center">
+                    No alumni found for your search.
+                </div>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

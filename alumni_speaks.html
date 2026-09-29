@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alumni Speaks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>Alumni Speaks</h1>
+    <p>Learn from the experiences and journeys of our alumni.</p>
+</header>
+
+<main>
+
+    <h2>Alumni Stories</h2>
+
+    {% for speak in speaks %}
+    <div class="card">
+        <h3>{{ speak.title }}</h3>
+        <p><strong>By:</strong> {{ speak.author }}</p>
+        <p>{{ speak.content }}</p>
+    </div>
+    {% endfor %}
+
+    <h2>Upcoming Webinars</h2>
+
+    {% for webinar in webinars %}
+    <div class="card">
+        <h3>{{ webinar.title }}</h3>
+        <p><strong>Speaker:</strong> {{ webinar.speaker }}</p>
+        <p><strong>Date:</strong> {{ webinar.date }}</p>
+        <p>{{ webinar.description }}</p>
+    </div>
+    {% endfor %}
+
+    <br>
+    <a href="{{ url_for('home') }}">← Back to Home</a>
+
+</main>
+
+</body>
+</html>
