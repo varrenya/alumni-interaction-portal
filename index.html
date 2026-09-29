@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Alumni Interaction Portal{% endblock %}
+
+{% block content %}
+
+<!-- Alumni Banner -->
+<section class="hero">
+
+    <div class="container text-center">
+
+        <img
+            src="{{ url_for('static', filename='images/alumni_banner.png') }}"
+            alt="Alumni"
+            class="alumni-banner">
+
+        <h1 class="mt-4">
+            Connect. Learn. Grow.
+        </h1>
+
+        <p>
+            Connecting students and alumni for mentorship,
+            career guidance and professional networking.
+        </p>
+
+        <a
+            href="{{ url_for('alumni_directory') }}"
+            class="btn btn-light btn-lg">
+            Explore Alumni Directory
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- Featured Alumni -->
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+        <h2>Featured Alumni</h2>
+
+        <p class="text-muted">
+            Meet our alumni and explore their professional journeys.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        {% for person in featured %}
+
+        <div class="col-md-4">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <h4>{{ person.name }}</h4>
+
+                    <p class="text-muted">
+                        {{ person.role }}
+                    </p>
+
+                    <p>
+                        <strong>Company:</strong>
+                        {{ person.company }}
+                    </p>
+
+                    <p>
+                        <strong>Location:</strong>
+                        {{ person.location }}
+                    </p>
+
+                    <a
+                        href="{{ url_for('alumni_details', alumni_id=person.id) }}"
+                        class="btn btn-outline-dark">
+                        View Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- Portal Sections -->
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h2>Explore the Alumni Portal</h2>
+
+        <p class="text-muted">
+            Connect with alumni, get guidance and stay updated.
+        </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- Alumni -->
+        <div class="col-md-4">
+
+            <div class="card portal-card h-100">
+
+                <div class="card-body text-center">
+
+                    <h4>Alumni</h4>
+
+                    <p>
+                        Explore alumni profiles, professional
+                        backgrounds and career information.
+                    </p>
+
+                    <a
+                        href="{{ url_for('alumni_directory') }}"
+                        class="btn btn-outline-dark">
+                        Alumni Directory
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Alumni Speaks -->
+        <div class="col-md-4">
+
+            <div class="card portal-card h-100">
+
+                <div class="card-body text-center">
+
+                    <h4>Alumni Speaks</h4>
+
+                    <p>
+                        Read experiences, career advice and
+                        guidance shared by our alumni.
+                    </p>
+
+                    <a
+                        href="{{ url_for('alumni_speaks') }}"
+                        class="btn btn-outline-dark">
+                        Read More
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Assistance -->
+        <div class="col-md-4">
+
+            <div class="card portal-card h-100">
+
+                <div class="card-body text-center">
+
+                    <h4>Alumni Assistance</h4>
+
+                    <p>
+                        Ask questions and seek career guidance
+                        from the alumni community.
+                    </p>
+
+                    <a
+                        href="{{ url_for('assistance') }}"
+                        class="btn btn-outline-dark">
+                        Get Assistance
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Events -->
+        <div class="col-md-4">
+
+            <div class="card portal-card h-100">
+
+                <div class="card-body text-center">
+
+                    <h4>Events</h4>
+
+                    <p>
+                        Stay updated about alumni reunions,
+                        achievements and upcoming events.
+                    </p>
+
+                    <a
+                        href="{{ url_for('events') }}"
+                        class="btn btn-outline-dark">
+                        View Events
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- References -->
+        <div class="col-md-4">
+
+            <div class="card portal-card h-100">
+
+                <div class="card-body text-center">
+
+                    <h4>References</h4>
+
+                    <p>
+                        Access useful career preparation,
+                        technical and higher-study resources.
+                    </p>
+
+                    <a
+                        href="{{ url_for('references') }}"
+                        class="btn btn-outline-dark">
+                        View References
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- About -->
+        <div class="col-md-4">
+
+            <div class="card portal-card h-100">
+
+                <div class="card-body text-center">
+
+                    <h4>About MGIT</h4>
+
+                    <p>
+                        Learn more about the alumni interaction
+                        platform and its purpose.
+                    </p>
+
+                    <a
+                        href="{{ url_for('about') }}"
+                        class="btn btn-outline-dark">
+                        About Portal
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

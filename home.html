@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Alumni Interaction Portal{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container text-center mb-4">
+    <img
+        src="{{ url_for('static', filename='images/alumni_banner.png') }}"
+        alt="Alumni"
+        class="alumni-banner">
+</div>
+    <div class="container">
+
+        <h1>Connect. Learn. Grow.</h1>
+
+        <p>
+            A platform connecting students and alumni for mentorship,
+            career guidance and professional networking.
+        </p>
+
+        <a href="{{ url_for('alumni_directory') }}" class="btn btn-light btn-lg">
+            Explore Alumni Directory
+        </a>
+
+    </div>
+</section>
+
+
+<!-- Featured Alumni -->
+<section class="container py-5">
+
+    <h2 class="mb-4">Featured Alumni</h2>
+
+    <div class="row g-4">
+
+        {% for alumni in alumni[:3] %}
+
+        <div class="col-md-4">
+
+            <div class="card alumni-card h-100">
+
+                <div class="card-body">
+
+                    <h3>{{ alumni.name }}</h3>
+
+                    <p class="text-muted mb-2">
+                        {{ alumni.role }}
+                    </p>
+
+                    <p>
+                        {{ alumni.location }}
+                    </p>
+
+                    <a
+                        href="{{ url_for('alumni_details', alumni_id=alumni.id) }}"
+                        class="btn btn-outline-dark">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- Alumni Speaks -->
+<section class="container py-5">
+
+    <h2 class="mb-4">Alumni Speaks</h2>
+
+    <div class="row g-4">
+
+        {% for post in posts[:2] %}
+
+        <div class="col-md-6">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <span class="badge bg-secondary mb-3">
+                        Alumni Speaks
+                    </span>
+
+                    <h4>{{ post.title }}</h4>
+
+                    <p>
+                        {{ post.content }}
+                    </p>
+
+                    <small class="text-muted">
+                        By {{ post.author }}
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- Portal Features -->
+<section class="container py-5">
+
+    <h2 class="mb-4">Explore the Portal</h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4>Alumni</h4>
+                    <p>
+                        Explore alumni profiles, professional details
+                        and career information.
+                    </p>
+                    <a href="{{ url_for('alumni_directory') }}"
+                       class="btn btn-outline-dark">
+                        Explore
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4>Assistance</h4>
+                    <p>
+                        Ask questions and seek guidance from the
+                        alumni community.
+                    </p>
+                    <a href="{{ url_for('assistance') }}"
+                       class="btn btn-outline-dark">
+                        Ask a Question
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4>Events</h4>
+                    <p>
+                        Explore alumni achievements, reunions and
+                        college events.
+                    </p>
+                    <a href="{{ url_for('events') }}"
+                       class="btn btn-outline-dark">
+                        View Events
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
